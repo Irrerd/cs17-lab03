@@ -3,6 +3,16 @@
 
 using namespace std;
 
+enum Scale{
+    Celsius = 'C',
+    Farengheit = 'F',
+    Kelvin = 'K',
+};
+struct temperature{
+    Scale scale;
+    double value;
+};
+
 int
 main() {
     size_t number_count;
