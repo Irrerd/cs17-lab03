@@ -13,6 +13,25 @@ struct temperature{
     double value;
 };
 
+istream & operator >>
+        (istream & in, temperature& t){
+    in>>t.value;
+    char symbol;
+    in>>symbol;
+    switch (symbol){
+    case 'K':
+        t.scale = Kelvin;
+        break;
+    case 'C':
+        t.scale = Celsius;
+        break;
+    case 'F':
+        t.scale = Farengheit;
+        break;
+    }
+    return in;
+}
+
 int
 main() {
     size_t number_count;
