@@ -42,17 +42,16 @@ void test_temperature_input(){
     assert(t.scale == 'Celsius');
 
     stringstream on ("-5F");
-    temperature t;
     on>>t;
     assert(t.value == -5);
     assert(t.scale == 'Farengheit');
 
-    stringstream en ("0K");
-    temperature t;
+    stringstream en ("-5F");
     en>>t;
     assert(t.value == 0);
     assert(t.scale == 'Kelvin');
 }
+
 
 int
 main() {
