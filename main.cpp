@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <sstream>
+#include <cassert>
 
 using namespace std;
 
@@ -30,6 +32,26 @@ istream & operator >>
         break;
     }
     return in;
+}
+
+void test_temperature_input(){
+    stringstream in ("30C");
+    temperature t;
+    in>>t;
+    assert(t.value == 30);
+    assert(t.scale == 'Celsius');
+
+    stringstream on ("-5F");
+    temperature t;
+    on>>t;
+    assert(t.value == -5);
+    assert(t.scale == 'Farengheit');
+
+    stringstream en ("0K");
+    temperature t;
+    en>>t;
+    assert(t.value == 0);
+    assert(t.scale == 'Kelvin');
 }
 
 int
