@@ -39,17 +39,17 @@ void test_temperature_input(){
     temperature t;
     in>>t;
     assert(t.value == 30);
-    assert(t.scale == 'Celsius');
+    assert(t.scale == Celsius);
 
     stringstream on ("-5F");
     on>>t;
     assert(t.value == -5);
-    assert(t.scale == 'Farengheit');
+    assert(t.scale == Farengheit);
 
     stringstream en ("-5F");
     en>>t;
     assert(t.value == 0);
-    assert(t.scale == 'Kelvin');
+    assert(t.scale == Kelvin);
 }
 
 temperature convert (const temperature& from, Scale scale) {
@@ -79,6 +79,11 @@ temperature convert (const temperature& from, Scale scale) {
         break;
     }
     return result;
+}
+
+bool  operator<(temperature& lhs, temperature& rhs){
+    lhs = convert(lhs, rhs.scale);
+    return lhs.value < rhs.value;
 }
 
 int
