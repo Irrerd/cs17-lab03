@@ -2,7 +2,20 @@
 // Created by u211-04 on 27.04.2017.
 //
 
-#ifndef LAB01_TEMPERATURE_H
-#define LAB01_TEMPERATURE_H
+#pragma once
+#include <iostream>
+enum Scale{
+    Celsius = 'C',
+    Farengheit = 'F',
+    Kelvin = 'K',
+};
+struct temperature{
+    Scale scale;
+    double value;
+};
+std::istream & operator >>(std::istream & in, temperature& t);
+temperature convert (const temperature& from, Scale scale);
+bool  operator<(temperature& lhs, temperature& rhs);
+bool  operator>(temperature& lhs, temperature& rhs);
 
-#endif //LAB01_TEMPERATURE_H
+
