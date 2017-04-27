@@ -17,10 +17,22 @@ void test_temperature_input(){
     assert(t.value == -5);
     assert(t.scale == Farengheit);
 
-    stringstream en ("-5F");
+    stringstream en ("0K");
     en>>t;
     assert(t.value == 0);
     assert(t.scale == Kelvin);
+
+    stringstream un ("I'm Ironman");
+    un>>t;
+    assert(!un);
+
+    stringstream an ("21-etagggg");
+    an>>t;
+    assert(!an);
+
+    stringstream yn ("07Zvezdniylord");
+    yn>>t;
+    assert(!yn);
 }
 
 int
@@ -33,6 +45,10 @@ main() {
     vector<temperature> numbers(number_count);
     for (size_t i = 0; i < number_count; i++) {
         cin >> numbers[i];
+        if (!cin){
+            cerr << "VSEO PLOHHOO";
+            return 1;
+        }
     }
 
     size_t column_count;

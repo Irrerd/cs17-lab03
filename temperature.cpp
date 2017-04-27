@@ -3,9 +3,14 @@
 //
 #include <iostream>
 #include "temperature.h"
+using namespace std;
 
-std::istream & operator >>(std::istream & in, temperature& t){
+istream & operator >>(istream & in, temperature& t){
     in>>t.value;
+    if(!in){
+        in.setstate(ios_base::failbit);
+        return in;
+    }
     char symbol;
     in>>symbol;
     switch (symbol){
@@ -18,6 +23,15 @@ std::istream & operator >>(std::istream & in, temperature& t){
     case 'F':
         t.scale = Farengheit;
         break;
+    default:
+        in.setstate(ios_base::failbit);
+        return in;
+    }
+    temperature T;
+    T = convert(t,Kelvin);
+    if(T.value<0){
+        in.setstate(ios_base::failbit);
+        return in;
     }
     return in;
 }
